@@ -12,6 +12,17 @@ public class AppointmentsList {
 
     public void sortList() {
 
+        for(int i=1; i<appointments.size(); i++) {
+            int j = i-1;
+            Appointment key = appointments.get(i);
+
+            while(j > 0 || key.getTime().compareTo(appointments.get(j).getTime()) < 0) {
+                appointments.set(j+1, appointments.get(j));
+                j--;
+            }
+            appointments.set(j+1, key);
+        }
+
     }
 
     public void deleteFromList(Appointment appointment) {
@@ -36,9 +47,14 @@ public class AppointmentsList {
 
         Appointment result = null;
         
-        for(Appointment Appointment : appointments) {
-            if(Appointment.getTime().equals(time)) {
-                result = Appointment;
+        for(Appointment appointment : appointments) {
+            String status = appointment.getStatus();
+            if(status.charAt(0) == '0') {
+                appointment.setStatus("1" + status.substring(1));
+                if(appointment.getTime().equals(time)) {
+                    result = appointment;
+                    break;
+                }
             }
         }
 
