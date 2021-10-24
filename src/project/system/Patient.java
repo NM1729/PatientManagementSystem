@@ -12,7 +12,7 @@ public class Patient {
     private float pendingPayments;
     private AppointmentsList appointments;
 
-    Patient(String Name, int Age, String Sex, String phone, String Remarks, float payment) {
+    public Patient(String Name, int Age, String Sex, String phone, String Remarks, float payment) {
         name = Name;
         age = Age;
         sex = Sex;

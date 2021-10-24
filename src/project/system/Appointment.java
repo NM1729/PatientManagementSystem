@@ -10,7 +10,7 @@ public class Appointment {
     private Prescription prescription;
     private String status;
 
-    Appointment(String name, String details, String Time, float amount, String Remarks) {
+    public Appointment(String name, String details, String Time, float amount, String Remarks) {
         patientName = name;
         detailsOfDiscomfort = details;
         time = Time;

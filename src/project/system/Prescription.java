@@ -8,7 +8,7 @@ public class Prescription {
     private HashMap<String, String> items;
     private String remarks;
 
-    Prescription(String details, String Remarks) {
+    public Prescription(String details, String Remarks) {
         items = new HashMap<String, String>();
         appointmentDetails = details;
         remarks = Remarks;

@@ -6,7 +6,7 @@ public class AppointmentsList {
     
     private ArrayList<Appointment> appointments;
 
-    AppointmentsList() {
+    public AppointmentsList() {
         appointments = new ArrayList<Appointment>();
     }
 

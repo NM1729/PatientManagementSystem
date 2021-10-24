@@ -6,7 +6,7 @@ public class PatientsList {
     
     private ArrayList<Patient> patients;
 
-    PatientsList() {
+    public PatientsList() {
         patients = new ArrayList<Patient>();
     }
 
