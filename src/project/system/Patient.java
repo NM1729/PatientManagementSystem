@@ -86,7 +86,7 @@ public class Patient {
         return pendingPayments;
     }
 
-    public AppointmentsList setAppointments() {
+    public AppointmentsList getAppointments() {
         return appointments;
     }
     

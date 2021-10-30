@@ -16,8 +16,7 @@ public class Appointment {
         time = Time;
         amountToBePaid = amount;
         remarks = Remarks;
-        String prescriptionDetails = name + ": " + Time;
-        prescription = new Prescription(prescriptionDetails, "None");
+        prescription = new Prescription("None", "None");
         status = "PENDING";
     }
 
