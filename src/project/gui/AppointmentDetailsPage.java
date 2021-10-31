@@ -115,22 +115,22 @@ public class AppointmentDetailsPage {
             app.setTime(time);
         }
 
-        System.out.printf("Current amount: %f\n", app.getAmountToBePaid());
+        System.out.printf("Current amount(-1 to skip): %f\n", app.getAmountToBePaid());
         float amount=0;
         while(true) {
             try {
                 amount = sc.nextFloat();
                 sc.nextLine();
-                if(amount >= 0)
+                if(amount >= -1)
                     break;
             } catch (InputMismatchException e) {
                 System.out.println("Invalid amount input");
                 sc.next();
             }
-            if(amount < 0)
+            if(amount < -1)
                 System.out.println("Invalid amount input");
         }
-        if(amount != 0)
+        if(amount >= 0)
             app.setAmountToBePaid(amount);
 
         System.out.printf("Current remarks: %s\n", app.getRemarks());

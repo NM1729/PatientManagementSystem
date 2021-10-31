@@ -15,16 +15,21 @@ public class AppointmentsList {
         for(int i=1; i<appointments.size(); i++) {
             int j = i-1;
             Appointment key = appointments.get(i);
+            String time1, time2;
 
-            while(j > 0 && key.getTime().compareTo(appointments.get(j).getTime()) > 0) {
+            while(j >= 0) {
+                time1 = key.getTime();
+                time2 = appointments.get(j).getTime();
+
+                if(time1.compareTo(time2) > 0)
+                    break;
+
                 appointments.set(j+1, appointments.get(j));
                 j--;
             }
+
             appointments.set(j+1, key);
         }
-
-        for(Appointment appointment : appointments)
-            System.out.println(appointment.getTime());
 
     }
 

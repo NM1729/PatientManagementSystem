@@ -253,19 +253,28 @@ public class Utils {
         if(minute == 60)
             minute = Integer.parseInt(min);
 
-        String ampm;
+        String ampm, currentAMPM;
+        if(Integer.parseInt(h) > 11)
+            currentAMPM = "PM";
+        else
+            currentAMPM = "AM";
+
+        System.out.println("Current AM/PM(Enter to skip): " + currentAMPM);
 
         while(true) {
             ampm = sc.nextLine();
-            if(!(ampm.equals("AM") || ampm.equals("PM")))
+            if(ampm.isEmpty()) {
+                ampm = currentAMPM;
+                break;
+            }
+            else if(!(ampm.equals("AM") || ampm.equals("PM")))
                 System.out.println("Invalid input");
             else
                 break;
-            
-            if(ampm.equals("PM"))
-                hour += 12;
-
         }
+
+        if(ampm.equals("PM"))
+            hour += 12;
 
         time = Integer.toString(year) + "-";
         if(month < 10)

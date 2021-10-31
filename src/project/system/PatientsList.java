@@ -23,22 +23,27 @@ public class PatientsList {
         for(int i=1; i<patients.size(); i++) {
             int j = i-1;
             Patient key = patients.get(i);
-            Boolean check=true;
+            String name1, name2;
 
-            while(j > 0) {
-                
-                if(field.equals("Name"))
-                    check = key.getName().compareTo(patients.get(j).getName()) > 0;
-                else if(field.equals("Payment"))
-                    check = key.getPendingPayments() < patients.get(j).getPendingPayments();
+            while(j >= 0) {
 
-                if(check == false)
-                    break;
-                
+                if(field.equals("Name")) {
+                    name1 = key.getName();
+                    name2 = patients.get(j).getName();
+
+                    if(name1.compareTo(name2) > 0)
+                        break;
+                }
+
+                else if(field.equals("Payment")) {
+                    if(key.getPendingPayments() > patients.get(j).getPendingPayments())
+                        break;
+                }
+
                 patients.set(j+1, patients.get(j));
                 j--;
             }
-            
+
             patients.set(j+1, key);
         }
 

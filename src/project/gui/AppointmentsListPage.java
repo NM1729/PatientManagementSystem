@@ -23,13 +23,13 @@ public class AppointmentsListPage {
 
     public void display(ArrayList<Appointment> appointments) {
         int i=1;
-        System.out.println("S.No.|Patient Name|Discomfort|Time|Amount|");
-        System.out.println("------------------------------------------");
+        System.out.println("S.No.|Patient Name|Discomfort|Time|Amount|Status");
+        System.out.println("------------------------------------------------");
         for(Appointment appointment : appointments) {
             System.out.printf("""
-            %d|%s|%s|%s|%f
-            --------------
-            """, i, appointment.getPatientName(), appointment.getDetailsOfDiscomfort(), appointment.getTime(), appointment.getAmountToBePaid());
+            %d|%s|%s|%s|%.2f|%s
+            -----------------
+            """, i, appointment.getPatientName(), appointment.getDetailsOfDiscomfort(), appointment.getTime(), appointment.getAmountToBePaid(), appointment.getStatus());
             i+=1;
         }
     }
@@ -125,7 +125,6 @@ public class AppointmentsListPage {
 
     public int selectAppointment() {
 
-        System.out.println(appointments.getAppointments().isEmpty());
         if(appointments.getAppointments().isEmpty()) {
             System.out.println("No appointments.");
             return -1;

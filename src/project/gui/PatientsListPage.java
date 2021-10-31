@@ -19,7 +19,7 @@ public class PatientsListPage {
         System.out.println("------------------------------------");
         for(Patient patient : patients) {
             System.out.printf("""
-            %d|%s|%d|%s|%f
+            %d|%s|%d|%s|%.2f
             --------------
             """, i, patient.getName(), patient.getAge(), patient.getSex(), patient.getPendingPayments());
             i+=1;
