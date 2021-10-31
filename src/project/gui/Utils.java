@@ -50,7 +50,7 @@ public class Utils {
                 sc.nextLine();
                 boolean check1 = year % 4 == 0 && month == 2 && (day > 29 || day < 1);
                 boolean check2 = year % 4 != 0 && month == 2 && (day > 28 || day < 1);
-                boolean check3 = (month == 4 || month == 6 || month == 9 || month == 12) && (day > 30 || day < 1);
+                boolean check3 = (month == 4 || month == 6 || month == 9 || month == 11) && (day > 30 || day < 1);
                 boolean check4 = day > 31 || day < 1;
 
                 if(check1 || check2 || check3 || check4)
@@ -111,7 +111,24 @@ public class Utils {
 
         }
 
-        time = year + "-" + month + "-" + day + " " + hour + ":" + minute;
+        time = Integer.toString(year) + "-";
+        if(month < 10)
+            time += "0" + Integer.toString(month) + "-";
+        else
+            time += month + "-";
+        if(day < 10)
+            time += "0" + Integer.toString(day) + " ";
+        else
+            time += day + " ";
+        if(hour < 10)
+            time += "0" + Integer.toString(hour) + ":";
+        else
+            time += hour + ":";
+        if(minute < 10)
+            time += "0" + Integer.toString(minute);
+        else
+            time += minute;
+
         return time;
 
     }
@@ -147,7 +164,7 @@ public class Utils {
         if(year == 0)
             year = Integer.parseInt(y);
 
-        System.out.println("Current month: " + y);
+        System.out.println("Current month: " + m);
 
         while(true) {
             try {
@@ -175,7 +192,7 @@ public class Utils {
                 boolean check0 = day != 0;
                 boolean check1 = year % 4 == 0 && month == 2 && (day > 29 || day < 1);
                 boolean check2 = year % 4 != 0 && month == 2 && (day > 28 || day < 1);
-                boolean check3 = (month == 4 || month == 6 || month == 9 || month == 12) && (day > 30 || day < 1);
+                boolean check3 = (month == 4 || month == 6 || month == 9 || month == 11) && (day > 30 || day < 1);
                 boolean check4 = day > 31 || day < 1;
 
                 if(check0 && (check1 || check2 || check3 || check4))
@@ -250,7 +267,24 @@ public class Utils {
 
         }
 
-        time = year + "-" + month + "-" + day + " " + hour + ":" + minute;
+        time = Integer.toString(year) + "-";
+        if(month < 10)
+            time += "0" + Integer.toString(month) + "-";
+        else
+            time += month + "-";
+        if(day < 10)
+            time += "0" + Integer.toString(day) + " ";
+        else
+            time += day + " ";
+        if(hour < 10)
+            time += "0" + Integer.toString(hour) + ":";
+        else
+            time += hour + ":";
+        if(minute < 10)
+            time += "0" + Integer.toString(minute);
+        else
+            time += minute;
+
         return time;
 
     }

@@ -46,7 +46,16 @@ public class PatientPage {
     public Patient show() {
 
         displayDetails();
-        patient.setAppointments(displayAppointments());
+        AppointmentsList appsList = displayAppointments();
+        ArrayList<Appointment> apps = new ArrayList<Appointment>();
+
+        for(Appointment app : appsList.getAppointments()) {
+            app.setPatientName(patient.getName());
+            apps.add(app);
+        }
+
+        appsList.setAppointments(apps);
+        patient.setAppointments(appsList);
         return patient;
 
     }

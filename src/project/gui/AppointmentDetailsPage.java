@@ -46,30 +46,26 @@ public class AppointmentDetailsPage {
 
         """);
         
-        //String detailsOfDiscomfort = sc.nextLine();
-        String detailsOfDiscomfort = "None";
+        String detailsOfDiscomfort = sc.nextLine();
         
-        //String time = inputTime();
-        String time = "Time";
+        String time = utils.inputTime();
 
-        //float amount=0;
-        float amount = (float)100.56;
-        // while(true) {
-        //     try {
-        //         amount = sc.nextFloat();
-        //         sc.nextLine();
-        //         if(amount >= 0)
-        //             break;
-        //     } catch (InputMismatchException e) {
-        //         System.out.println("Invalid amount input");
-        //         sc.next();
-        //     }
-        //     if(amount < 0)
-        //         System.out.println("Invalid amount input");
-        // }
+        float amount=0;
+        while(true) {
+            try {
+                amount = sc.nextFloat();
+                sc.nextLine();
+                if(amount >= 0)
+                    break;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid amount input");
+                sc.next();
+            }
+            if(amount < 0)
+                System.out.println("Invalid amount input");
+        }
 
-        // String remarks = sc.nextLine();
-        String remarks = "None";
+        String remarks = sc.nextLine();
 
         appointment = new Appointment("", detailsOfDiscomfort, time, amount, remarks);
 

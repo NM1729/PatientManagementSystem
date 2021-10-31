@@ -66,7 +66,6 @@ public class PatientsListPage {
     }
 
     public ArrayList<Patient> searchList(String name) {
-        ArrayList<Patient> originalArray = patients.getPatients();
         ArrayList<Patient> patientsArray = patients.getPatients();
         ArrayList<Patient> newArray = new ArrayList<Patient>();
 
@@ -86,7 +85,21 @@ public class PatientsListPage {
                 newArray.add(searchedPatient);
         }
 
-        patients.setPatients(originalArray);
+        for(int i=0; i<patientsArray.size(); i++) {
+
+            Patient patient = patientsArray.get(i);
+            patient.setPhoneNumber(patient.getPhoneNumber().substring(1));
+            patientsArray.set(i, patient);
+
+        }
+
+        for(int i=0; i<newArray.size(); i++) {
+
+            Patient patient = patientsArray.get(i);
+            patient.setPhoneNumber(patient.getPhoneNumber().substring(1));
+            patientsArray.set(i, patient);
+
+        }
 
         return newArray;
     }
@@ -97,22 +110,27 @@ public class PatientsListPage {
 
     public int selectPatient() {
 
-        System.out.println("Enter serial no of patient to select: ");
-        int number;
-        while(true) {
-            try {
-                number = sc.nextInt();
-                sc.nextLine();
-                if(number < 1 || number > patients.getPatients().size())
-                    System.out.println("Invalid input");
-                else
-                    break;
-            } catch(InputMismatchException e) {
-                System.out.println("Invalid input");
-            }
+        if(patients.getPatients().isEmpty()) {
+            System.out.println("No patients found.");
+            return -1;
         }
-
-        return number-1;
+        else {
+            System.out.println("Enter serial no of patient to select: ");
+            int number;
+            while(true) {
+                try {
+                    number = sc.nextInt();
+                    sc.nextLine();
+                    if(number < 1 || number > patients.getPatients().size())
+                        System.out.println("Invalid input");
+                    else
+                        break;
+                } catch(InputMismatchException e) {
+                    System.out.println("Invalid input");
+                }
+            }
+            return number-1;
+        }
 
     }
 
@@ -127,10 +145,12 @@ public class PatientsListPage {
     public void viewPatient() {
 
         int index = selectPatient();
-        Patient selectedPatient = patients.getPatients().get(index);
-        PatientPage patientPage = new PatientPage(selectedPatient, sc);
-        selectedPatient = patientPage.show();
-        updateList(index, selectedPatient);
+        if(index != -1) {
+            Patient selectedPatient = patients.getPatients().get(index);
+            PatientPage patientPage = new PatientPage(selectedPatient, sc);
+            selectedPatient = patientPage.show();
+            updateList(index, selectedPatient);
+        }
 
     }
 
@@ -155,42 +175,49 @@ public class PatientsListPage {
 
     public PatientsList show() {
 
-        int menuOption = selectMenuOption();
-        Patient patient;
-        int index;
+        int menuOption = 0;
+        while(menuOption != 9) {
+            menuOption = selectMenuOption();
+            Patient patient;
+            int index;
 
-        switch(menuOption) {
-            
-            case 1: display(patients.getPatients());
-                    break;
-            case 2: viewPatient();
-                    break;
-            case 3: patient = addPatient();
-                    updateList(-1, patient);
-                    break;
-            case 4: sortList("Name");
-                    break;
-            case 5: sortList("Payment");
-                    break;
-            case 6: System.out.println("Enter name to search: ");
-                    String name = sc.nextLine();
-                    ArrayList<Patient> searchedPatients = searchList(name);
-                    if(searchedPatients.isEmpty())
-                        System.out.println("No patients found");
-                    else
-                        display(searchedPatients);
-                    break;
-            case 7: index = selectPatient();
-                    patient = updatePatient(patients.getPatients().get(index));
-                    updateList(index, patient);
-                    break;
-            case 8: index = selectPatient();
-                    patient = patients.getPatients().get(index);
-                    deletePatient(patient);
-                    break;
-            case 9: break;
-            default: System.out.println("Invalid input");
+            switch(menuOption) {
+                
+                case 1: display(patients.getPatients());
+                        break;
+                case 2: viewPatient();
+                        break;
+                case 3: patient = addPatient();
+                        updateList(-1, patient);
+                        break;
+                case 4: sortList("Name");
+                        break;
+                case 5: sortList("Payment");
+                        break;
+                case 6: System.out.println("Enter name to search: ");
+                        String name = sc.nextLine();
+                        ArrayList<Patient> searchedPatients = searchList(name);
+                        if(searchedPatients.isEmpty())
+                            System.out.println("No patients found");
+                        else
+                            display(searchedPatients);
+                        break;
+                case 7: index = selectPatient();
+                        if(index != -1) {
+                            patient = updatePatient(patients.getPatients().get(index));
+                            updateList(index, patient);
+                        }
+                        break;
+                case 8: index = selectPatient();
+                        if(index != -1) {
+                            patient = patients.getPatients().get(index);
+                            deletePatient(patient);
+                        }
+                        break;
+                case 9: break;
+                default: System.out.println("Invalid input");
 
+            }
         }
 
         return patients;

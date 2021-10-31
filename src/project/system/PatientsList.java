@@ -28,7 +28,7 @@ public class PatientsList {
             while(j > 0) {
                 
                 if(field.equals("Name"))
-                    check = key.getName().compareTo(patients.get(j).getName()) < 0;
+                    check = key.getName().compareTo(patients.get(j).getName()) > 0;
                 else if(field.equals("Payment"))
                     check = key.getPendingPayments() < patients.get(j).getPendingPayments();
 
@@ -40,6 +40,16 @@ public class PatientsList {
             }
             
             patients.set(j+1, key);
+        }
+
+        if(field.equals("Name")) {
+            for(Patient patient : patients)
+                System.out.println(patient.getName());
+        }
+
+        else {
+            for(Patient patient: patients)
+                System.out.println(patient.getPendingPayments());
         }
 
     }

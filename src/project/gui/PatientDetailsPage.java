@@ -49,48 +49,45 @@ public class PatientDetailsPage {
         """);
 
         //Enter name
-        //String name = sc.nextLine();
-        String name = "Nidhin";
+        String name = sc.nextLine();
         
         //Enter valid age(natural number)
-        // int age=1;
-        // while(true) {
-        //     try {
-        //         age = sc.nextInt();
-        //         sc.nextLine();
-        //         if(age > 0)
-        //             break;
-        //     } catch (InputMismatchException e) {
-        //         System.out.println("Invalid age input");
-        //         sc.next();
-        //     }
-        //     if(age <= 0)
-        //         System.out.println("Invalid age input");
-        // }
-        int age = 21;
+        int age=1;
+        while(true) {
+            try {
+                age = sc.nextInt();
+                sc.nextLine();
+                if(age > 0)
+                    break;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid age input");
+                sc.next();
+            }
+            if(age <= 0)
+                System.out.println("Invalid age input");
+        }
 
         //Enter valid sex(Male, Female or Others)
-        String sex = "Male";
-        // Boolean check = false;
-        // do {
-        //     sex = sc.nextLine();
-        //     check = sex.equals("Male") || sex.equals("Female") || sex.equals("Others");
-        //     if(!check)
-        //         System.out.println("Invalid sex");
-        // }while(!check);
+        String sex;
+        Boolean check = false;
+        do {
+            sex = sc.nextLine();
+            check = sex.equals("Male") || sex.equals("Female") || sex.equals("Others");
+            if(!check)
+                System.out.println("Invalid sex");
+        }while(!check);
 
         //Enter valid phone number(Optional + followed by a set of numbers)
-        String phone = "7668019719";
-        // do {
-        //     phone = sc.nextLine();
-        //     check = phone.matches("^\\+?\\d+");
-        //     if(!check)
-        //         System.out.println("Invalid phone number");
-        // }while(!check);
+        String phone;
+        do {
+            phone = sc.nextLine();
+            check = phone.matches("^\\+?\\d+");
+            if(!check)
+                System.out.println("Invalid phone number");
+        }while(!check);
 
         //Enter remarks
-        //String remarks = sc.nextLine();
-        String remarks = "None";
+        String remarks = sc.nextLine();
 
         //Creating the new patient
         Patient newPatient = new Patient(name, age, sex, phone, remarks, 0);
