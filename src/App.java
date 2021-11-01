@@ -2,6 +2,8 @@
 import project.gui.*;
 import project.system.*;
 import java.util.*;
+import project.database.*;
+import java.sql.*;
 
 //Main class
 public class App {
@@ -13,8 +15,14 @@ public class App {
         int choice=0;
         Scanner sc = new Scanner(System.in);
 
+        Database database = new Database();
+        Connection conn = database.establishConnection();
+
+        Fetch fetch = new Fetch(conn);
+        Insert insert = new Insert(conn);
+
         //Patient and appointment list to be displayed and edited
-        PatientsList patientsList = new PatientsList();
+        PatientsList patientsList = fetch.fetchData();
         AppointmentsList appointmentsList = new AppointmentsList();
 
         //While option isnt 3
@@ -52,6 +60,9 @@ public class App {
             }
 
         }while(choice != 3);
+
+        database.wipeData(conn);
+        insert.insertData(patientsList);
 
         sc.close();
 
